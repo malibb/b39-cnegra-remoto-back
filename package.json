@@ -1,0 +1,29 @@
+{
+  "name": "b39-cnegra-remoto-back",
+  "version": "1.0.0",
+  "description": "\"back b39\"",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malibb/b39-cnegra-remoto-back.git"
+  },
+  "keywords": [
+    "back-end"
+  ],
+  "author": "Mali :D",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/malibb/b39-cnegra-remoto-back/issues"
+  },
+  "homepage": "https://github.com/malibb/b39-cnegra-remoto-back#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "graphql-yoga": "^1.18.3"
+  }
+}
