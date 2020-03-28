@@ -1,4 +1,4 @@
-const { createOneAuthor, updateById }= require('../../services/AuthorService');
+const { createOneAuthor, updateById, deleteOneAuthor }= require('../../services/AuthorService');
 
 // (root, params, context, info)
 const createAuthor = async (_, { data }) => {
@@ -11,8 +11,13 @@ const updateAuthor = async (_, { id, data }) => {
     return author;
 };
 
+const deleteAuthor = async (_, { id }) => {
+    const author = await deleteOneAuthor(id);
+    return author;
+};
 
 module.exports = {
     createAuthor,
     updateAuthor,
+    deleteAuthor,
 };
