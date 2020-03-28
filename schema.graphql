@@ -1,6 +1,8 @@
 type Query {
     getAuthors:[Author]!
+    getPosts:[Post]!
     getAuthorById(id:ID!):Author!
+    getPostById(id:ID!):Post!
     #getAuthorByEmail(email:String!)
     #getAuthorsDeleted:[Author]!
 }
@@ -9,6 +11,9 @@ type Mutation {
     createAuthor(data:AuthorCreateInput!): Author!
     updateAuthor(id:ID!,data:AuthorUpdateInput!):Author!
     deleteAuthor(id:ID!):Author!
+    createPost(idAuthor: ID!,data:PostCreateInput!): Post!
+    updatePost(id:ID!,data:PostUpdateInput!):Post!
+    deletePost(id:ID!):Post!
 }
 
 type Author{
@@ -29,6 +34,22 @@ type Post{
     author: Author!
     cover: String!
     liked_by: [Author]!
+    is_active: Boolean
+}
+
+input PostCreateInput{
+    title: String!
+    content:String!
+    author: String
+    cover: String
+    is_active: Boolean
+}
+
+input PostUpdateInput{
+    title: String
+    content:String
+    author: String
+    cover: String
     is_active: Boolean
 }
 

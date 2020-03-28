@@ -1,7 +1,15 @@
 const Authors = require('../models/Authors');
 
-const getAllAuthors = () => Authors.find({is_active: true});
-const getOneAuthorById = (id) => Authors.findById(id);
+const getAllAuthors = () => Authors
+    .find({is_active: true})
+    .populate({
+        path: 'posts',
+        model: 'posts',
+    });
+    
+const getOneAuthorById = (id) => Authors.findById({ 
+    _id: id, is_active: true
+});
 const createOneAuthor = (data) => Authors.create(data);
 const updateById = (id, data) => Authors.findByIdAndUpdate({ 
     _id: id, is_active: true
