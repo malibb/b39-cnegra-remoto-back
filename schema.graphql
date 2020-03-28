@@ -4,6 +4,7 @@ type Query {
 
 type Mutation {
     createAuthor(data:AuthorCreateInput!): Author!
+    updateAuthor(id:ID!,data:AuthorUpdateInput!):Author!
 }
 
 type Author{
@@ -32,6 +33,16 @@ input AuthorCreateInput{
     first_name: String!
     last_name: String!
     email: String!
+    birth_date: String
+    gender: GENDERS
+    profile_pic: String
+    is_active: Boolean
+}
+
+input AuthorUpdateInput{
+    first_name: String
+    last_name: String
+    email: String
     birth_date: String
     gender: GENDERS
     profile_pic: String
