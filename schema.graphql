@@ -1,22 +1,24 @@
 scalar EmailAdd
 scalar URL
+directive @auth on FIELD_DEFINITION | FIELD
 
 type Query {
     getAuthors:[Author]!
     getPosts:[Post]!
     getAuthorById(id:ID!):Author!
     getPostById(id:ID!):Post!
+    me: Author! @auth
     #getAuthorByEmail(email:String!)
     #getAuthorsDeleted:[Author]!
 }
 
 type Mutation {
     createAuthor(data:AuthorCreateInput!): Author!
-    updateAuthor(id:ID!,data:AuthorUpdateInput!):Author!
-    deleteAuthor(id:ID!):String!
-    createPost(idAuthor: ID!,data:PostCreateInput!): Post!
-    updatePost(id:ID!,data:PostUpdateInput!):Post!
-    deletePost(id:ID!):Post!
+    updateAuthor(id:ID!,data:AuthorUpdateInput!):Author!@auth
+    deleteAuthor(id:ID!):String!@auth
+    createPost(idAuthor: ID!,data:PostCreateInput!): Post!@auth
+    updatePost(id:ID!,data:PostUpdateInput!):Post!@auth
+    deletePost(id:ID!):Post!@auth
     login(email:EmailAdd!, password: String!): Auth! 
 }
 
