@@ -13,7 +13,8 @@ const updateAuthor = async (_, { id, data }) => {
 
 const deleteAuthor = async (_, { id }) => {
     const author = await deleteOneAuthor(id);
-    return author;
+    if (!author) return 'Author not exist';
+    return 'Author delete';
 };
 
 module.exports = {

@@ -7,6 +7,9 @@ const createPost = async (_, {idAuthor, data}) => {
         const author = await getOneAuthorById(idAuthor);
         author.posts.push(post._id);
         author.save();
+        post.liked_by.push(author._id);
+        post.author = author._id;
+        post.save();
     } 
     return post;
 };

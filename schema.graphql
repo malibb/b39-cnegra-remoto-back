@@ -10,7 +10,7 @@ type Query {
 type Mutation {
     createAuthor(data:AuthorCreateInput!): Author!
     updateAuthor(id:ID!,data:AuthorUpdateInput!):Author!
-    deleteAuthor(id:ID!):Author!
+    deleteAuthor(id:ID!):String!
     createPost(idAuthor: ID!,data:PostCreateInput!): Post!
     updatePost(id:ID!,data:PostUpdateInput!):Post!
     deletePost(id:ID!):Post!
@@ -50,6 +50,7 @@ input PostUpdateInput{
     content:String
     author: String
     cover: String
+    liked_by: [String]!
     is_active: Boolean
 }
 
