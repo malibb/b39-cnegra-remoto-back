@@ -14,6 +14,13 @@ const getOneAuthorById = (id) => Authors.findById({
     model: 'posts',
 });
 
+const getOneAuthorByEmail = (email) => Authors.findOne({ 
+    email, is_active: true
+}).populate({
+    path: 'posts',
+    model: 'posts',
+});
+
 const createOneAuthor = (data) => Authors.create(data);
 
 const updateById = (id, data) => Authors.findByIdAndUpdate({ 
@@ -34,4 +41,5 @@ module.exports = {
     updateById,
     deleteOneAuthor,
     getOneAuthorById,
+    getOneAuthorByEmail,
 };
