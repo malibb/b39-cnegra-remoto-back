@@ -1,0 +1,84 @@
+scalar EmailAdd
+scalar URL
+
+type Query {
+    getAuthors:[Author]!
+    getPosts:[Post]!
+    getAuthorById(id:ID!):Author!
+    getPostById(id:ID!):Post!
+    #getAuthorByEmail(email:String!)
+    #getAuthorsDeleted:[Author]!
+}
+
+type Mutation {
+    createAuthor(data:AuthorCreateInput!): Author!
+    updateAuthor(id:ID!,data:AuthorUpdateInput!):Author!
+    deleteAuthor(id:ID!):String!
+    createPost(idAuthor: ID!,data:PostCreateInput!): Post!
+    updatePost(id:ID!,data:PostUpdateInput!):Post!
+    deletePost(id:ID!):Post!
+}
+
+type Author{
+    _id: ID!
+    first_name: String!
+    last_name: String!
+    email: EmailAdd!
+    birth_date: String!
+    posts: [Post]!
+    gender: GENDERS
+    profile_pic: String!
+}
+
+type Post{
+    _id: ID!
+    title: String!
+    content:String!
+    author: Author!
+    cover: String!
+    liked_by: [Author]!
+    is_active: Boolean
+}
+
+input PostCreateInput{
+    title: String!
+    content:String!
+    author: String
+    cover: String
+    is_active: Boolean
+}
+
+input PostUpdateInput{
+    title: String
+    content:String
+    author: String
+    cover: String
+    liked_by: [String]!
+    is_active: Boolean
+}
+
+input AuthorCreateInput{
+    first_name: String!
+    last_name: String!
+    email: EmailAdd!
+    birth_date: String
+    gender: GENDERS
+    profile_pic: String
+    is_active: Boolean
+}
+
+input AuthorUpdateInput{
+    first_name: String
+    last_name: String
+    email: EmailAdd
+    birth_date: String
+    gender: GENDERS
+    profile_pic: String
+    is_active: Boolean
+}
+
+enum GENDERS{
+    M
+    F
+    O
+}
