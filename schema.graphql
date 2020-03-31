@@ -17,17 +17,24 @@ type Mutation {
     createPost(idAuthor: ID!,data:PostCreateInput!): Post!
     updatePost(id:ID!,data:PostUpdateInput!):Post!
     deletePost(id:ID!):Post!
+    login(email:EmailAdd!, password: String!): Auth! 
 }
 
 type Author{
     _id: ID!
     first_name: String!
     last_name: String!
+    password: String!
     email: EmailAdd!
     birth_date: String!
     posts: [Post]!
     gender: GENDERS
     profile_pic: String!
+}
+
+type Auth{
+    token: String!
+    message: String!
 }
 
 type Post{
@@ -60,6 +67,7 @@ input PostUpdateInput{
 input AuthorCreateInput{
     first_name: String!
     last_name: String!
+    password: String!
     email: EmailAdd!
     birth_date: String
     gender: GENDERS
@@ -71,6 +79,7 @@ input AuthorUpdateInput{
     first_name: String
     last_name: String
     email: EmailAdd
+    password: String
     birth_date: String
     gender: GENDERS
     profile_pic: String
