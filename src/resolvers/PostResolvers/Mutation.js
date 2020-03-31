@@ -1,14 +1,11 @@
 const { createOnePost, updateOnePost, deleteOnePost } = require('../../services/PostService');
-const { getOneAuthorById } = require('../../services/AuthorService');
 
-const createPost = async (_, {idAuthor, data}) => {
+const createPost = async (_, {data}, {userAuth}) => {
     const post = await createOnePost(data);
     if(post) {
-        const author = await getOneAuthorById(idAuthor);
-        author.posts.push(post._id);
-        author.save();
-        post.liked_by.push(author._id);
-        post.author = author._id;
+        userAuth.posts.push(post._id);
+        userAuth.save();
+        post.author = userAuth._id;
         post.save();
     } 
     return post;
