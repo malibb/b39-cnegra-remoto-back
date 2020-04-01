@@ -14,11 +14,12 @@ type Query {
 
 type Mutation {
     createAuthor(data:AuthorCreateInput!): Author!
-    updateAuthor(id:ID!,data:AuthorUpdateInput!):Author!@auth
-    deleteAuthor(id:ID!):String!@auth
-    createPost(idAuthor: ID!,data:PostCreateInput!): Post!@auth
+    updateAuthor(data:AuthorUpdateInput!):Author!@auth
+    deleteAuthor:String!@auth
+    createPost(data:PostCreateInput!): Post!@auth
     updatePost(id:ID!,data:PostUpdateInput!):Post!@auth
-    deletePost(id:ID!):Post!@auth
+    likePost(id:ID!):Post!@auth
+    deletePost(id:ID!):String!@auth
     login(email:EmailAdd!, password: String!): Auth! 
 }
 

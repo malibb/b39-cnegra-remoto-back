@@ -5,14 +5,14 @@ const createAuthor = async (_, { data }) => {
     const author = await createOneAuthor(data); // Servicio de base de datos
     return author;
 };
-
-const updateAuthor = async (_, { id, data }) => {
-    const author = await updateById(id, data);
+// context: userAuth 
+const updateAuthor = async (_, { data }, { userAuth } ) => {
+    const author = await updateById(userAuth._id, data);
     return author;
 };
 
-const deleteAuthor = async (_, { id }) => {
-    const author = await deleteOneAuthor(id);
+const deleteAuthor = async (_, __, { userAuth } ) => {
+    const author = await deleteOneAuthor(userAuth._id);
     if (!author) return 'Author not exist';
     return 'Author delete';
 };
