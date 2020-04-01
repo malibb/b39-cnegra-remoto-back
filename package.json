@@ -25,9 +25,11 @@
     "nodemon": "^2.0.2"
   },
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "dotenv": "^8.2.0",
     "graphql-scalars": "^1.0.9",
     "graphql-yoga": "^1.18.3",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.6"
   }
 }

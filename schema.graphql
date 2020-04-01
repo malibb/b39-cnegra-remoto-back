@@ -1,33 +1,43 @@
 scalar EmailAdd
 scalar URL
+directive @auth on FIELD_DEFINITION | FIELD
 
 type Query {
     getAuthors:[Author]!
     getPosts:[Post]!
     getAuthorById(id:ID!):Author!
     getPostById(id:ID!):Post!
+    me: Author! @auth
     #getAuthorByEmail(email:String!)
     #getAuthorsDeleted:[Author]!
 }
 
 type Mutation {
     createAuthor(data:AuthorCreateInput!): Author!
-    updateAuthor(id:ID!,data:AuthorUpdateInput!):Author!
-    deleteAuthor(id:ID!):String!
-    createPost(idAuthor: ID!,data:PostCreateInput!): Post!
-    updatePost(id:ID!,data:PostUpdateInput!):Post!
-    deletePost(id:ID!):Post!
+    updateAuthor(data:AuthorUpdateInput!):Author!@auth
+    deleteAuthor:String!@auth
+    createPost(data:PostCreateInput!): Post!@auth
+    updatePost(id:ID!,data:PostUpdateInput!):Post!@auth
+    likePost(id:ID!):Post!@auth
+    deletePost(id:ID!):String!@auth
+    login(email:EmailAdd!, password: String!): Auth! 
 }
 
 type Author{
     _id: ID!
     first_name: String!
     last_name: String!
+    password: String!
     email: EmailAdd!
     birth_date: String!
     posts: [Post]!
     gender: GENDERS
     profile_pic: String!
+}
+
+type Auth{
+    token: String!
+    message: String!
 }
 
 type Post{
@@ -60,6 +70,7 @@ input PostUpdateInput{
 input AuthorCreateInput{
     first_name: String!
     last_name: String!
+    password: String!
     email: EmailAdd!
     birth_date: String
     gender: GENDERS
@@ -71,6 +82,7 @@ input AuthorUpdateInput{
     first_name: String
     last_name: String
     email: EmailAdd
+    password: String
     birth_date: String
     gender: GENDERS
     profile_pic: String
