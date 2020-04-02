@@ -1,12 +1,32 @@
 const { createOneAuthor, updateById, deleteOneAuthor }= require('../../services/AuthorService');
 const authenticate = require('../../utils/authenticate');
+const storage = require('../../utils/storage');
+
 // (root, params, context, info)
 const createAuthor = async (_, { data }) => {
+    if(data.profile_pic){
+        const { createReadStream } = await data.profile_pic;
+        const stream = createReadStream();
+        const storageInfo = await storage({stream});
+        data = {
+            ...data,
+            profile_pic: storageInfo.secure_url,
+        };
+    }
     const author = await createOneAuthor(data); // Servicio de base de datos
     return author;
 };
 // context: userAuth 
 const updateAuthor = async (_, { data }, { userAuth } ) => {
+    if(data.profile_pic){
+        const { createReadStream } = await data.profile_pic;
+        const stream = createReadStream();
+        const storageInfo = await storage({stream});
+        data = {
+            ...data,
+            profile_pic: storageInfo.secure_url,
+        };
+    }
     const author = await updateById(userAuth._id, data);
     return author;
 };

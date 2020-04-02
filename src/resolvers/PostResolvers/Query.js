@@ -1,7 +1,10 @@
-const { getAllPosts, getOnePost } = require('../../services/PostService');
+const { getAllPosts, getAllPostsFilter, getOnePost } = require('../../services/PostService');
 
-const getPosts = async () => {
-    const posts = await getAllPosts();
+const getPosts = async (_, {filter}) => {
+    const posts = filter
+        ? await getAllPostsFilter(filter)
+        : await getAllPosts();
+    console.log(posts);
     return posts;
 };
 
