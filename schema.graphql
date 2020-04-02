@@ -1,5 +1,6 @@
 scalar EmailAdd
 scalar URL
+scalar Upload
 directive @auth on FIELD_DEFINITION | FIELD
 
 type Query {
@@ -29,10 +30,10 @@ type Author{
     last_name: String!
     password: String!
     email: EmailAdd!
-    birth_date: String!
+    birth_date: String
     posts: [Post]!
     gender: GENDERS
-    profile_pic: String!
+    profile_pic: String
 }
 
 type Auth{
@@ -53,16 +54,14 @@ type Post{
 input PostCreateInput{
     title: String!
     content:String!
-    author: String
-    cover: String
+    cover: Upload
     is_active: Boolean
 }
 
 input PostUpdateInput{
     title: String
     content:String
-    author: String
-    cover: String
+    cover: Upload
     liked_by: [String]!
     is_active: Boolean
 }
@@ -74,7 +73,7 @@ input AuthorCreateInput{
     email: EmailAdd!
     birth_date: String
     gender: GENDERS
-    profile_pic: String
+    profile_pic: Upload
     is_active: Boolean
 }
 
@@ -85,7 +84,7 @@ input AuthorUpdateInput{
     password: String
     birth_date: String
     gender: GENDERS
-    profile_pic: String
+    profile_pic: Upload
     is_active: Boolean
 }
 

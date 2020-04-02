@@ -8,10 +8,9 @@ const createPost = async (_, {data}, {userAuth}) => {
         const { createReadStream } = await data.cover;
         const stream = createReadStream();
         const storageInfo = await storage({stream});
-        console.log(storageInfo);
         data = {
             ...data,
-            cover: storageInfo.url, //url image
+            cover: storageInfo.secure_url, //url image
         };
     }
     const post = await createOnePost(data);
@@ -32,7 +31,7 @@ const updatePost = async (_, {id, data}) => {
         console.log(storageInfo);
         data = {
             ...data,
-            cover: storageInfo.url, //url image
+            cover: storageInfo.secure_url, //url image
         };
     }
     const post = await updateOnePost(id, data);
