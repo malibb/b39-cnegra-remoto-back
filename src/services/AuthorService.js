@@ -6,6 +6,13 @@ const getAllAuthors = () => Authors
         path: 'posts',
         model: 'posts',
     });
+
+const getAllAuthorsFilter = (filter) => Authors
+    .find({[filter]: { $exists: true} , is_active: true })
+    .populate({
+        path: 'posts',
+        model: 'posts',
+    });
     
 const getOneAuthorById = (id) => Authors.findById({ 
     _id: id, is_active: true
@@ -41,5 +48,6 @@ module.exports = {
     updateById,
     deleteOneAuthor,
     getOneAuthorById,
+    getAllAuthorsFilter,
     getOneAuthorByEmail,
 };

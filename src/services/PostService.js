@@ -3,6 +3,9 @@ const Posts = require('../models/Posts');
 const getAllPosts = () => Posts.find({is_active: true})
     .populate([{path:'liked_by', model:'authors' }, { path:'author', model:'authors' }]);
 
+const getAllPostsFilter = (filter) => Posts.find({[filter]: { $exists: true }})
+    .populate([{path:'liked_by', model:'authors' }, { path:'author', model:'authors' }]);
+
 const getOnePost = (id) => Posts.findById({ 
     _id: id, is_active: true
 }).populate([{path:'liked_by', model:'authors' }, { path:'author', model:'authors' }]);
@@ -25,5 +28,6 @@ module.exports = {
     getOnePost,
     createOnePost,
     updateOnePost,
-    deleteOnePost
+    deleteOnePost,
+    getAllPostsFilter,
 };

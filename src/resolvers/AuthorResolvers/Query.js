@@ -1,8 +1,10 @@
-const { getAllAuthors, getOneAuthorById }= require('../../services/AuthorService');
+const { getAllAuthors, getAllAuthorsFilter, getOneAuthorById }= require('../../services/AuthorService');
 
 // (root, params, context, info)
-const getAuthors = async () => {
-    const authors = await getAllAuthors();
+const getAuthors = async (_, { filter }) => {
+    const authors = filter 
+        ? await getAllAuthorsFilter(filter)
+        : await getAllAuthors();
     return authors;
 };
 

@@ -4,8 +4,8 @@ scalar Upload
 directive @auth on FIELD_DEFINITION | FIELD
 
 type Query {
-    getAuthors:[Author]!
-    getPosts:[Post]!
+    getAuthors(filter: String):[Author]!
+    getPosts(filter: String):[Post]!
     getAuthorById(id:ID!):Author!
     getPostById(id:ID!):Post!
     me: Author! @auth
