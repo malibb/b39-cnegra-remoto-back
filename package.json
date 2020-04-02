@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "\"back b39\"",
   "main": "index.js",
+  "engines": {
+    "node": "10.x"
+  },
   "scripts": {
     "dev": "nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,10 +25,10 @@
   },
   "homepage": "https://github.com/malibb/b39-cnegra-remoto-back#readme",
   "devDependencies": {
-    "eslint": "^6.8.0",
     "nodemon": "^2.0.2"
   },
   "dependencies": {
+    "eslint": "^6.8.0",
     "bcrypt": "^4.0.1",
     "cloudinary": "^1.21.0",
     "dotenv": "^8.2.0",
