@@ -8,7 +8,11 @@ const resolvers = require('./src/resolvers');
 
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URL, {
+const uri = process.env.NODE_ENV == 'test' 
+    ? process.env.MONGO_URL_TEST
+    : process.env.MONGO_URL_DEVELOP;
+
+mongoose.connect( uri, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology:true,
@@ -39,3 +43,5 @@ const server = new GraphQLServer({
 });
 
 server.start(() => console.log('Servidor arriba en puerto 4000!'));
+
+module.exports = { schema };
