@@ -7,9 +7,9 @@
     "node": "10.x"
   },
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "set NODE_ENV=develop && nodemon index.js",
+    "start": "set NODE_ENV=production && node index.js",
+    "test": "set NODE_ENV=test && jest --verbose"
   },
   "repository": {
     "type": "git",
@@ -28,12 +28,13 @@
     "nodemon": "^2.0.2"
   },
   "dependencies": {
-    "eslint": "^6.8.0",
     "bcrypt": "^4.0.1",
     "cloudinary": "^1.21.0",
     "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
     "graphql-scalars": "^1.0.9",
     "graphql-yoga": "^1.18.3",
+    "jest": "^25.2.7",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.6"
   }
